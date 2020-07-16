@@ -1,0 +1,32 @@
+{
+  "name": "spotify",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:ts": "tsc -p .",
+    "build:css": "node-sass --recursive --output ./dist/css --source-map true --source-map-contents ./src/scss",
+    "build:copy": "mkdir -p ./dist/statics/ && cp -R ./statics/* ./dist/statics/ && cp -R ./dist/src/* ./dist/statics && cp -R ./dist/css/* ./dist/statics",
+    "build:deps": "mkdir -p ./dist/statics/deps && cp node_modules/spotify-web-api-js/src/spotify-web-api.js ./dist/statics/deps",
+    "build": "npm run build:ts && npm run build:css && npm run build:copy",
+    "build:all": "npm run build && npm run build:deps"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/express": "^4.17.7",
+    "@types/react": "^16.9.21",
+    "@types/react-dom": "^16.9.5",
+    "@types/redux": "^3.6.0",
+    "axios": "^0.19.2",
+    "express": "^4.17.1",
+    "http-server": "^0.12.1",
+    "spotify-web-api-js": "^1.4.0",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.8.2"
+  },
+  "devDependencies": {
+    "node-sass": "^4.14.1"
+  }
+}
