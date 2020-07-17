@@ -3,9 +3,11 @@
         "module": "esnext",
         "target": "esnext",
         "moduleResolution": "Node",
-        "outDir": "./dist/src",
+        "outDir": "./dist",
         "esModuleInterop": true,
-        "incremental": true
+        "incremental": true,
+        "sourceMap": true,
+        "allowUmdGlobalAccess": true
     },
     "include": [
         "src/*.ts"

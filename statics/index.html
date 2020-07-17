@@ -13,6 +13,12 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js"
     integrity="sha256-bd8XIKzrtyJ1O5Sh3Xp3GiuMIzWC42ZekvrMMD4GxRg=" crossorigin="anonymous"></script>
   <script src="deps/spotify-web-api.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/core.min.js"
+    integrity="sha512-PQsdzDthPKtp230uD7lunTQw6CwNTPnd5LP3e3/+afg9cNkrL7UsfWXT3EW5Ar9XZ5SdADcPDXs1BAWNa9OZ7Q=="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/md5.min.js"
+    integrity="sha512-VLDQac8zlryHkFvL1HIH9KKjkPNdsNLEXM/vImKGMaNkEXbNtb+dyhnyXFkxai1RVNtwrD5L7vffgtzYzeKI3A=="
+    crossorigin="anonymous"></script>
   <!-- <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script> -->
   <script src='main.js' type="module"></script>
@@ -20,7 +26,10 @@
 
 <body>
   <div class="">
-    <button class="login-btn mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+    <button class="login-spotify-btn mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+      <i class="material-icons">add</i>
+    </button>
+    <button class="login-lastfm-btn mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
       <i class="material-icons">add</i>
     </button>
   </div>
