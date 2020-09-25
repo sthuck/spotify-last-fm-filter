@@ -4,11 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build:ts": "tsc -p .",
-    "build:css": "node-sass --recursive --output ./dist --source-map true --source-map-contents ./src/scss",
-    "build:copy": "mkdir -p ./dist && cp -R ./statics/* ./dist",
-    "build:deps": "mkdir -p ./dist/deps && cp node_modules/spotify-web-api-js/src/spotify-web-api.js ./dist/deps",
-    "build": "npm run build:ts && npm run build:css && npm run build:copy",
+    "build:client": "tsc -p client",
+    "build:client:w": "tsc -w -p client",
+    "build:css": "node-sass --recursive --output ./dist/client --source-map true --source-map-contents ./client/scss",
+    "build:css:w": "node-sass -w --recursive --output ./dist/client --source-map true --source-map-contents ./client/scss",
+    "build:copy": "mkdir -p ./dist/client && cp -R ./statics/assests ./dist/client",
+    "build:deps": "mkdir -p ./dist/client/deps && cp node_modules/spotify-web-api-js/src/spotify-web-api.js ./dist/client/deps",
+    "build": "npm run build:client && npm run build:css && npm run build:copy",
+    "start:server:dev": "nodemon",
+    "start": "npm run build:client:w & npm run build:css:w & npm run start:server:dev",
     "build:all": "npm run build && npm run build:deps"
   },
   "keywords": [],
@@ -22,13 +26,16 @@
     "@types/redux": "^3.6.0",
     "axios": "^0.19.2",
     "crypto-js": "^4.0.0",
+    "ejs": "^3.1.5",
     "express": "^4.17.1",
     "http-server": "^0.12.1",
+    "nodemon": "^2.0.4",
     "spotify-web-api-js": "^1.4.0",
     "ts-node": "^8.10.2",
     "typescript": "^3.8.2"
   },
   "devDependencies": {
+    "livereload": "^0.9.1",
     "node-sass": "^4.14.1"
   }
 }

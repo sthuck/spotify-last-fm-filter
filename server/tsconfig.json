@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "module": "CommonJS",
+        "target": "esnext",
+        "moduleResolution": "Node",
+        "outDir": "../dist/server",
+        "esModuleInterop": true,
+        "incremental": true,
+        "sourceMap": true,
+        "allowUmdGlobalAccess": false,
+        "lib": [
+            "ES2020"
+        ]
+    },
+    "include": [
+        "./**/*.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
