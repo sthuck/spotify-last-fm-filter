@@ -1,7 +1,167 @@
-$font-stack:    Helvetica, sans-serif;
+@import "reset.scss";
+@import "color-defs.scss";
+
+$font-stack: Helvetica, sans-serif;
 $primary-color: #333;
+$spinner-default: $palette-indigo-500;
+
+@mixin animate($val) {
+  animation: #{$val};
+  -moz-animation: #{$val};
+  -webkit-animation:#{$val};
+  -o-animation: #{$val};
+  -ms-animation: #{$val};
+}
+
+@mixin keyframes($animation-name) {
+  @-webkit-keyframes #{$animation-name} {
+      @content;
+  }
+  @-moz-keyframes #{$animation-name} {
+      @content;
+  }  
+  @-ms-keyframes #{$animation-name} {
+      @content;
+  }
+  @-o-keyframes #{$animation-name} {
+      @content;
+  }  
+  @keyframes #{$animation-name} {
+      @content;
+  }
+}
 
 body {
+  height: 100%;
   font: 100% $font-stack;
   color: $primary-color;
+}
+
+.login-btn-container {
+  > button {
+    width: 18rem;
+    height: 4.5rem;
+    font-size: 1.1rem;
+    --spinner-color: #fff;
+  }
+
+  display: flex;
+  flex-direction: column;
+  height: 11rem;
+  justify-content: space-between;
+}
+
+main.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.mdl-spinner__layer {
+  border-color: var(--spinner-color, $spinner-default) !important;
+}
+
+.playlist-container {
+  display: flex;
+  flex-wrap: wrap;
+  > * {
+    margin: 15px;
+  }
+  justify-content: center;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  :first-child {
+    margin-right: 1rem;
+  }
+  img {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+  }
+}
+
+@include keyframes(fadein) {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@include keyframes(fadeout) {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+
+.playlist-card {
+  @include animate("fadein 1s cubic-bezier(0.4, 0, 0.2, 1)");
+  
+  &.fade-out {
+    @include animate("fadeout .5s cubic-bezier(0.4, 0, 0.2, 1)");
+    animation-fill-mode: forwards;
+  }
+
+  
+  &:hover {
+    cursor: pointer;
+
+    > .mdl-card__actions {
+      background: rgba(240,98,146, .8)
+    }
+  }
+
+  &.selected {
+    > .mdl-card__actions {
+      background: rgba(240,98,146, .8)
+    }
+  }
+
+  &.mdl-card {
+    width: 16rem;
+    height: 16rem;
+    background: var(--playlist-img, "") center no-repeat #fff;
+    background-size: cover;
+  }
+
+  .playlist-card-name {
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  > .mdl-card__actions {
+    height: 52px;
+    padding: 16px;
+    background: rgba(0, 0, 0, 0.8);
+    position: relative;
+    z-index: 10;
+  }
+}
+
+.nav-item {
+  padding: 1rem 2.5rem;
+  display: block;
+  font-size: 1rem;
+  line-height: 2rem;
+  color: $palette-grey-900;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+
+  &.active {
+    background-color: $palette-pink-300; 
+  }
+  
+  &.disabled {
+    color: $palette-grey-400;
+    cursor: not-allowed;
+  }
 }

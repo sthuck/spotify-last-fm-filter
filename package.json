@@ -12,7 +12,7 @@
     "build:deps": "mkdir -p ./dist/client/deps && cp node_modules/spotify-web-api-js/src/spotify-web-api.js ./dist/client/deps",
     "build": "npm run build:client && npm run build:css && npm run build:copy",
     "start:server:dev": "nodemon",
-    "start": "npm run build:client:w & npm run build:css:w & npm run start:server:dev",
+    "start": "(npm run build:copy && npm run build:client:w & npm run build:css:w & npm run start:server:dev)",
     "build:all": "npm run build && npm run build:deps"
   },
   "keywords": [],
@@ -21,10 +21,12 @@
   "dependencies": {
     "@types/crypto-js": "^3.1.47",
     "@types/express": "^4.17.7",
+    "@types/material-design-lite": "^1.1.16",
     "@types/react": "^16.9.21",
     "@types/react-dom": "^16.9.5",
     "@types/redux": "^3.6.0",
     "axios": "^0.19.2",
+    "cookie-parser": "^1.4.5",
     "crypto-js": "^4.0.0",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
@@ -35,6 +37,7 @@
     "typescript": "^3.8.2"
   },
   "devDependencies": {
+    "ejs-lint": "^1.1.0",
     "livereload": "^0.9.1",
     "node-sass": "^4.14.1"
   }

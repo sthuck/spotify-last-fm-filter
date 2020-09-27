@@ -1,24 +1,19 @@
-import express from 'express';
+import express, {query} from 'express';
 import path from 'path';
 import {api} from './api';
+import {isDevMode} from './utils';
+import {viewsRouter} from './views/routes';
 
 const app = express();
 const PORT = process.env.PORT;
-var env = process.env.NODE_ENV || 'development';
-const DEVMODE = env === 'development';
+const DEVMODE = isDevMode();
 
 app.set('view engine', 'ejs');
 app.set('views', path.join('server', 'views'));
 
-app.get('/', (req, res) => {
-  res.render('index', {dev: DEVMODE});
-});
-
-app.get('/redirect', (req, res) => {
-  res.render('redirect', {dev: DEVMODE});
-});
-
 app.use('/api', api)
+app.use(viewsRouter);
+
 app.use(express.static(path.resolve('dist', 'client'), {extensions: ['html', 'js']}));
 
 app.listen(PORT || 8080);

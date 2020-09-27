@@ -1,0 +1,52 @@
+<head>
+  <%- include('head', {dev: dev, pageName}); %>
+</head>
+
+<body>
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer
+  mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <div class="user-info">
+          <img
+            className="profile-image"
+            src="<%=state.profileImg%>"
+          >
+          <h4><%= state.displayName %></h4>
+        </div>
+        <div class="mdl-layout-spacer"></div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+        mdl-textfield--floating-label mdl-textfield--align-right">
+          <label
+            class="mdl-button mdl-js-button mdl-button--icon"
+            for="playlist-search-input"
+          >
+            <i class="material-icons">search</i>
+          </label>
+          <div class="mdl-textfield__expandable-holder">
+            <input
+              class="mdl-textfield__input"
+              type="text"
+              name="sample"
+              id="playlist-search-input"
+            >
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="mdl-layout__drawer">
+      <span class="mdl-layout-title">Steps</span>
+      <nav class="mdl-navigation">
+        <% 
+        pageNames.forEach((pageName, index) => {
+          const isActive = index === pageIndex;
+          const isDisabled = index > pageIndex;
+          const classes = ['nav-item'].concat(isActive ? ['active'] : []).concat(isDisabled ? ['disabled'] : []).join(' ');
+          const element = `<a class="${classes}" ${isDisabled ? '' : `href="${urls[index]}"`}>${pageName}</a>`
+          %>
+        <%-element%>
+        <% }) %>
+      </nav>
+    </div>
+    <main class="mdl-layout__content">
+      <div class="page-content">

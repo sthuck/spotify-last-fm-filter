@@ -14,8 +14,7 @@ export class LastFmApi {
     const method = 'auth.getSession';
     const params = {method, api_key: key, token};
     const api_sig = this.signMethod(params);
-    const response = await axios.get(baseApi, {params: {...params, api_sig, format: 'json'}, })
-    console.log(response.data);
+    const response = await axios.get<SessionResponse>(baseApi, {params: {...params, api_sig, format: 'json'}, })
     return response.data;
   }
 
