@@ -32,7 +32,6 @@
     "crypto-js": "^4.0.0",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
-    "http-server": "^0.12.1",
     "nodemon": "^2.0.4",
     "spotify-web-api-js": "^1.4.0",
     "ts-node": "^8.10.2",
