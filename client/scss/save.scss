@@ -1,0 +1,117 @@
+@import "reset.scss";
+@import "color-defs.scss";
+@import "core.scss";
+
+.save-form-container {
+
+  width: 100%;
+  position: relative;
+  .mdl-spinner {
+      margin-top: 3rem;
+  }
+
+}
+
+.mdl-card.summary-card {
+  margin-top: 2%;
+  $cube-width: 15rem;
+  position: relative;
+  left: calc(50% - (#{$cube-width} * 1.5)) ;
+  width: $cube-width*3;
+  @media screen and (max-width: 800px) {
+    width: $cube-width*2;
+    left: calc(50% - (#{$cube-width})) ;
+  }
+  > div {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .playlist-card {
+    width: $cube-width;
+    height: $cube-width;
+  }
+
+  @media screen and (max-width: 800px) {
+    .playlist-card {
+      display: none !important;
+    }
+  }
+
+  .save-action {
+    width: $cube-width;
+    align-items: center;
+    color: $palette-grey-400;
+    font-size: 2rem;
+    cursor: not-allowed;
+    padding: 1rem 0;
+    height: 15rem;
+    transition: text-shadow .3s ease-in;
+    transition: color .7s ease-in;
+
+    &.active {
+      color: $palette-pink-400;
+      cursor: pointer;
+      &:hover {
+        text-shadow:0px 0px 10px $palette-pink-400;
+      }  
+    }
+  
+    .save-playlist-icon {
+      flex-grow: 1;
+      font-size: 14rem;
+      margin-top: -3rem;
+    }
+  }
+  
+  .stats {
+    width: $cube-width;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    line-height: 4rem;
+    text-align: center;
+
+    .stats-name {
+      flex-grow: 1;
+      font-size: 2rem;
+    }
+    .stats-count {
+      flex-grow: 1;
+      font-size: 2.5rem;
+    }
+  }
+}
+
+.mdl-card.song-list-card {
+  transition: height 2s;
+}
+
+.mdl-spinner {
+  width: 84px !important;
+  height: 84px !important;
+  align-self: center;
+}
+
+.mdl-spinner__circle {
+  border-width: 9px !important;
+}
+
+
+$album-image-size: 40px;
+.album-image  {
+  width: $album-image-size;
+  height: $album-image-size;
+}
+
+.filter-btn {
+  cursor: pointer;
+  .valid-icon {
+    color: $palette-green-400 !important;
+  }
+}
+
+.save-dialog {
+  width: 30%;
+  min-width: 300px;
+}

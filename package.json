@@ -8,7 +8,7 @@
     "build:client:w": "tsc -w -p client",
     "build:css": "node-sass --recursive --output ./dist/client --source-map true --source-map-contents ./client/scss",
     "build:css:w": "node-sass -w --recursive --output ./dist/client --source-map true --source-map-contents ./client/scss",
-    "build:copy": "mkdir -p ./dist/client && cp -R ./statics/assests ./dist/client",
+    "build:copy": "mkdir -p ./dist/client && cp -R ./statics/assets ./dist/client",
     "build:deps": "mkdir -p ./dist/client/deps && cp node_modules/spotify-web-api-js/src/spotify-web-api.js ./dist/client/deps",
     "build": "npm run build:client && npm run build:css && npm run build:copy",
     "start:server:dev": "nodemon",

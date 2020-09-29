@@ -18,7 +18,23 @@ export class LastFmApi {
     return response.data;
   }
 
-  private signMethod(parmas: Record<string, string>) {
+  async trackInfo(sk: string, track: string, artist: string, username: string,) {
+    const method = 'track.getInfo';
+    const params = {method, api_key: key, sk, track, artist, username, autocorrect: 1};
+    const api_sig = this.signMethod(params);
+    const response = await axios.get(baseApi, {params: {...params, api_sig, format: 'json'}, })
+    return response.data;
+  }
+
+  async artistInfo(sk: string, artist: string, username: string,) {
+    const method = 'artist.getInfo';
+    const params = {method, api_key: key, sk, artist, username, autocorrect: 1};
+    const api_sig = this.signMethod(params);
+    const response = await axios.get(baseApi, {params: {...params, api_sig, format: 'json'}, })
+    return response.data;
+  }
+
+  private signMethod(parmas: Record<string, string | number>) {
     const keys = Object.keys(parmas).sort();
     const text = keys.reduce((total, key) => total += (key + parmas[key]), '');
     const signature = CryptoJS.MD5(text + secret).toString();

@@ -1,6 +1,6 @@
-import {LastFmApi} from './lastfm-api';
-import {getAccessKey, setAccessKey, writeState} from './utils';
-import {doSpotifyLogin, getUser as getSpotifyUser} from './spotify-api';
+import {LastFmApi} from './apis/lastfm-api';
+import {getAccessKey, setAccessKey, writeState, setSpinner} from './utils';
+import {doSpotifyLogin, getUser as getSpotifyUser} from './apis/spotify-api';
 
 interface ServiceConfiguration {
   element: () => HTMLElement,
@@ -8,14 +8,9 @@ interface ServiceConfiguration {
   name: string
   getUserFn: () => Promise<any>
 }
-
-interface State {
-  spotifyProfile: SpotifyApi.UserProfileResponse | null
-}
-
-const state: State = {
-  spotifyProfile: null
-}
+let spotifyProfile: SpotifyApi.UserProfileResponse | null;
+let lastFmUserName: string;
+const lastFmApi = new LastFmApi();
 
 const dom = {
   spotifyLoginBtn: () => document.querySelector('.login-spotify-btn') as HTMLButtonElement,
@@ -31,11 +26,6 @@ const isLoggedInToAll = () => Object.keys(serviceConfigurations)
   .every((serviceName: SupportedServices) => serviceConfigurations[serviceName].isLoggedIn);
 
 
-const setSpinner = (element: HTMLElement, extraCss: string = '') => {
-  element.innerHTML = `<div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active ${extraCss}"></div>`;
-  componentHandler.upgradeElement(element.querySelector('.mdl-spinner'));
-}
-
 const checkLoginStatus = (what: SupportedServices[] = ['lastfm', 'spotify']) => {
   const promises = what.map(async serviceName => {
     const conf = serviceConfigurations[serviceName];
@@ -48,7 +38,7 @@ const checkLoginStatus = (what: SupportedServices[] = ['lastfm', 'spotify']) => 
       if (isLoggedIn) {
 
         if (serviceName === 'spotify') {
-          state.spotifyProfile = user;
+          spotifyProfile = user;
         }
 
         const [el, name] = [conf.element(), conf.name];
@@ -61,9 +51,9 @@ const checkLoginStatus = (what: SupportedServices[] = ['lastfm', 'spotify']) => 
 
 const redirectToAppIfLoggedIn = () => {
   if (isLoggedInToAll()) {
-    const {display_name, images} = state.spotifyProfile;
+    const {display_name: displayName, images, id: spotifyId} = spotifyProfile;
     const profileImg = images[0]?.url;
-    writeState({profileImg, displayName: display_name});
+    writeState({profileImg, spotifyId, displayName, ...(lastFmUserName ? {lastFmUserName} : {})});
     location.assign(`/pick-playlist`);
   }
 }
@@ -82,15 +72,20 @@ window.addEventListener('load', () => {
 
   const lastFmLoginBtn = dom.lastFmLoginBtn();
   lastFmLoginBtn.addEventListener('click', () => {
-    const lastFmApi = new LastFmApi();
     setSpinner(lastFmLoginBtn);
     lastFmApi.authRequest();
   });
 });
 
-window.addEventListener('message', (e) => {
-  console.log('got messege', e.data);
-  setAccessKey(e.data.type, e.data.accessCode);
+window.addEventListener('message', async (e) => {
+  if (e.data.type === 'lastfm') {
+    const {session} = await lastFmApi.getSession(e.data.accessCode);
+    const {key, name} = session;
+    setAccessKey(e.data.type, key);
+    lastFmUserName = name;
+  } else {
+    setAccessKey(e.data.type, e.data.accessCode);
+  }
   checkLoginStatus([e.data.type]).then(redirectToAppIfLoggedIn);
 });
 

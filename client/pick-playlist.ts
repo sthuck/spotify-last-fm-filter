@@ -1,5 +1,5 @@
-import {fetchUserPlaylists, getPlyaylistContent} from './spotify-api';
-import {debounce, escapeRegExp, writeState} from './utils';
+import {fetchUserPlaylists} from './apis/spotify-api';
+import {debounce, escapeRegExp, getParentItem, writeState} from './utils';
 
 let playlists: SpotifyApi.PlaylistObjectSimplified[] = [];
 let allPlaylists: SpotifyApi.PlaylistObjectSimplified[] = [];
@@ -20,11 +20,11 @@ const setupSearch = () => {
 }
 
 const renderPlaylists = () => {
-  const container = document.querySelector('.playlist-container');
+  const container = document.querySelector('.playlist-picker-grid');
   const html = playlists.map(playlist => {
     return /*html*/`
   <div class="playlist-card mdl-card mdl-shadow--6dp" 
-    style="--playlist-img: url(${playlist.images[0]?.url || '/assests/empty-playlist.jpg'})"
+    style="--playlist-img: url(${playlist.images[0]?.url || '/assets/empty-playlist.jpg'})"
     data-playlist-id="${playlist.id}"
   >
     <div class="mdl-card__title mdl-card--expand">
@@ -42,19 +42,7 @@ const renderPlaylists = () => {
   componentHandler.upgradeDom();
 }
 
-const getPlaylistCard = (childElement: HTMLElement) => {
-  let current = childElement;
-
-  while (current) {
-    if (current.matches('.playlist-container')) {
-      return undefined;
-    }
-    if (current.matches('.playlist-card')) {
-      return current;
-    }
-    current = current.parentElement;
-  }
-};
+const getPlaylistCard = getParentItem('.playlist-card', '.playlist-picker-grid');
 
 const fadeOutOtherCards = (selectedCard: HTMLElement) => {
   const cards = document.querySelectorAll('.playlist-card');
@@ -66,7 +54,7 @@ const fadeOutOtherCards = (selectedCard: HTMLElement) => {
 }
 
 const handlePlaylistClick = () => {
-  const container: HTMLDivElement = document.querySelector('.playlist-container');
+  const container: HTMLDivElement = document.querySelector('.playlist-picker-grid');
   container.addEventListener('click', (e => {
     const card = getPlaylistCard(e.target as HTMLElement);
     if (card) {
@@ -89,7 +77,7 @@ window.addEventListener('load', async () => {
       location.assign('/')
     }
     throw e;
-  })
+  });
   setupSearch();
   renderPlaylists();
   handlePlaylistClick();

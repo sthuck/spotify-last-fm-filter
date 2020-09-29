@@ -3,6 +3,7 @@ import cookieParser from 'cookie-parser';
 import {isDevMode} from '../utils';
 
 const DEVMODE = isDevMode();
+const cdn = process.env.CDN_URL || '/';
 
 const pageNames = ['Pick playlist', 'Set filter', 'Save new playlist'];
 const urls = ['pick-playlist', 'set-filter', 'save'];
@@ -20,7 +21,8 @@ const router = Router();
 router.use(cookieParser());
 
 router.get('/', (req, res) => {
-  res.render('index', {dev: DEVMODE, state: {}});
+  const state = getStateObj(req);
+  res.render('index', {dev: DEVMODE, state, baseApi: '/', cdn});
 });
 
 router.get('/redirect', (req, res) => {
@@ -37,7 +39,9 @@ urls.forEach((url, index) => {
       pageIndex: index,
       pageName: pageNames[index],
       jsScript: url,
-      state
+      state,
+      baseApi: '/',
+      cdn
     });
   });
 });

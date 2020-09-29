@@ -2,24 +2,61 @@
 <html>
 
 <head>
-  <%- include('head', {dev: dev, jsScript: 'login'}); %>
+  <%- include('head', {dev: dev, jsScript: 'login', css: ''}); %>
 </head>
 
 <body>
-  <main class="container">
-    <div class="login-btn-container">
-      <button
-        class="login-spotify-btn mdl-color--green-A400	mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-      >
-        Login to spotify
-      </button>
-
-      <button
-        class="login-lastfm-btn .mdl-color--red-A700 mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-      >
-        Login to LAST.FM
-      </button>
+  <header class="login-header row">
+    <div>
+      <h1>PLAYLIST FILTER</h1>
     </div>
+    <div class="row">
+      <div><a
+          class="row"
+          href="https://github.com/sthuck/spotify-last-fm-filter"
+          target="_blank"
+        ><img src="<%-cdn%>assets/github.png"></a></div>
+    </div>
+  </header>
+  <video
+    autoplay
+    muted
+    loop
+    id="cover-video"
+  >
+    <source
+      src="<%-cdn%>assets/cover.mp4"
+      type="video/mp4"
+    >
+  </video>
+  <main class="login-page-main">
+    <div class="mdl-grid">
+      <div class="mdl-cell--3-col mdl-cell--2-col-tablet mdl-cell--hide-phone"></div>
+      <div class="login-container mdl-cell mdl-cell--6-col mdl-cell--4-col-phone mdl-cell--4-col-tablet">
+        <section>
+          Ever got tired of spotify suggesting you to hear artists you already know?
+          Got your festival playlist ready but want to filter all the songs you already know by heart?
+          <br>
+          <br>
+          Use your last.fm account to filter your playlist and discover only the new stuff!
+        </section>
+
+        <div class="login-btn-container">
+          <button
+            class="login-spotify-btn	mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+          >
+            Login to spotify
+          </button>
+
+          <button
+            class="login-lastfm-btn .mdl-color--red-A700 mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+          >
+            Login to LAST.FM
+          </button>
+        </div>
+      </div>
+    </div>
+
   </main>
 </body>
 

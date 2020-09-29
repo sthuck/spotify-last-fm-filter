@@ -1,0 +1,69 @@
+@mixin keyframes($animation-name) {
+  @-webkit-keyframes #{$animation-name} {
+      @content;
+  }
+  @-moz-keyframes #{$animation-name} {
+      @content;
+  }  
+  @-ms-keyframes #{$animation-name} {
+      @content;
+  }
+  @-o-keyframes #{$animation-name} {
+      @content;
+  }  
+  @keyframes #{$animation-name} {
+      @content;
+  }
+}
+
+@include keyframes(fadein) {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@include keyframes(fadeout) {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@mixin animate($val) {
+  animation: #{$val};
+  -moz-animation: #{$val};
+  -webkit-animation:#{$val};
+  -o-animation: #{$val};
+  -ms-animation: #{$val};
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+}
+
+.center-child {
+  align-items: center;
+  justify-content: center;
+}
+
+.fill-parent {
+  height: 100% !important;
+  width: 100% !important;
+}
+
+.grow {
+  flex-grow: 1;
+}
+
+.dont-shrink {
+  flex-shrink: 0;
+}

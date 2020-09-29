@@ -1,0 +1,97 @@
+@import "reset.scss";
+@import "color-defs.scss";
+@import "core.scss";
+
+@mixin filter-form {
+  box-shadow: 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12), 0 3px 5px -1px rgba(0,0,0,.2);
+  padding: .5rem;
+  background: #fff;
+}
+
+@media screen and (max-width: 600px) {
+  .playlist-card {
+    display: none !important;
+  }
+
+  .filter-form {
+    @include filter-form();
+    height: 60%;
+    width: 90%;
+    position: relative;
+    top: 10%;
+  }
+
+  .filter-container {
+    position: relative;
+    justify-content: center;
+  }
+}
+
+@media screen and (min-width: 601px) {
+  @media screen and (min-width: 1300px) {
+    .filter-container {
+      --total-form-size: 70rem;
+      --playlist-card-size: 40rem;
+      --set-filter-size: 30rem;
+    }
+  }
+
+  @media screen and (min-width: 801px) and (max-width: 1300px) {
+    .filter-container {
+      --total-form-size: 55rem;
+      --playlist-card-size: 25rem;
+      --set-filter-size: 30rem;
+    }
+  }
+  @media screen and (max-width: 800px) {
+    .filter-container {
+      --total-form-size: 45rem;
+      --playlist-card-size: 25rem;
+      --set-filter-size: 20rem;
+    }
+
+    .filter-form-actions {
+      margin-top: .25rem !important;
+    }
+  }
+
+  .filter-container {
+    @include keyframes(slide) {
+      from {
+        width: var(--playlist-card-size);
+      }
+      to {
+        width: var(--total-form-size);
+      }
+    }
+    
+    position: relative;
+
+    .playlist-card {
+      width: var(--playlist-card-size);
+      height: var(--playlist-card-size);
+    }
+    
+    .filter-form {
+      @include filter-form();
+      @include animate("slide .4s ease-in");
+      animation-fill-mode: forwards;
+      position: relative;
+      overflow: hidden;
+      width: var(--total-form-size);
+      height: calc(var(--playlist-card-size) + 1rem);
+      top: 10%;
+      left: calc(50% - (var(--total-form-size) / 2));
+
+    }
+    .set-filter-card {
+      width: var(--set-filter-size);
+    }
+  }
+}
+
+.filter-form-actions {
+  margin-top: 1.5rem;
+  position: relative;
+  justify-content: flex-end;
+}

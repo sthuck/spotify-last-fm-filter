@@ -3,17 +3,42 @@
   http-equiv='X-UA-Compatible'
   content='IE=edge'
 >
-<title>Spotify filter</title>
+<title>Spotify playlist filter</title>
+<meta
+  name="description"
+  content="Ever got tired of spotify suggesting you to hear songs you already know? use last.fm to filter songs you already heard"
+>
+<meta
+  property="og:description"
+  content="Ever got tired of spotify suggesting you to hear songs you already know? use last.fm to filter songs you already heard"
+>
+<meta
+  property="og:title"
+  content="Spotify playlist filter"
+>
 <meta
   name='viewport'
   content='width=device-width, initial-scale=1'
 >
 <link
+  href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Roboto:ital,wght@0,400;0,500;0,700;1,300&display=swap"
+  rel="stylesheet"
+>
+
+<link
   rel='stylesheet'
   type='text/css'
   media='screen'
-  href='main.css'
+  href='<%-cdn%>main.css'
 >
+<% if (css) { %>
+<link
+  rel='stylesheet'
+  type='text/css'
+  media='screen'
+  href='<%-cdn%><%-css%>.css'
+>
+<% } %>
 <link
   rel="stylesheet"
   href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -38,9 +63,11 @@
 <%-
 `<script>
   window.__state =  ${JSON.stringify(state || {})};
+  window.__baseApi = '${baseApi}';
+  window.__baseStatics = '${cdn}>';
 </script>`
 %>
 <script
-  src='<%-jsScript%>.js'
+  src='<%-cdn%><%-jsScript%>.js'
   type="module"
 ></script>

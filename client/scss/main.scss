@@ -1,35 +1,10 @@
 @import "reset.scss";
 @import "color-defs.scss";
+@import "core.scss";
 
-$font-stack: Helvetica, sans-serif;
+$font-stack: "Roboto", "Helvetica", "Arial", sans-serif;
 $primary-color: #333;
 $spinner-default: $palette-indigo-500;
-
-@mixin animate($val) {
-  animation: #{$val};
-  -moz-animation: #{$val};
-  -webkit-animation:#{$val};
-  -o-animation: #{$val};
-  -ms-animation: #{$val};
-}
-
-@mixin keyframes($animation-name) {
-  @-webkit-keyframes #{$animation-name} {
-      @content;
-  }
-  @-moz-keyframes #{$animation-name} {
-      @content;
-  }  
-  @-ms-keyframes #{$animation-name} {
-      @content;
-  }
-  @-o-keyframes #{$animation-name} {
-      @content;
-  }  
-  @keyframes #{$animation-name} {
-      @content;
-  }
-}
 
 body {
   height: 100%;
@@ -37,39 +12,95 @@ body {
   color: $primary-color;
 }
 
-.login-btn-container {
-  > button {
-    width: 18rem;
-    height: 4.5rem;
-    font-size: 1.1rem;
-    --spinner-color: #fff;
-  }
-
-  display: flex;
-  flex-direction: column;
-  height: 11rem;
-  justify-content: space-between;
+#cover-video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
 }
 
-main.container {
+.login-header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.5);
+  color: #f1f1f1;
+  min-width: 100%;
+  line-height: 2.5rem;
+  justify-content: space-between;
+  padding: 4px 10px;
+  align-items: center;
+
+  h1 {
+    font-size: 1.8rem;
+    font-family: "Lato", sans-serif;
+    margin: 0;
+  }
+
+  img {
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+}
+
+.page-content {
+  height: 100%;
+  width: 100%;
+  position: relative;
   display: flex;
+}
+
+main.login-page-main {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100%;
   width: 100%;
+
+  .login-container {
+    background: rgba(0, 0, 0, 0.7);
+    color: #f1f1f1;
+    position: relative;
+    z-index: 1;
+    font-family: $font-stack;
+    font-size: 1.2rem;
+    padding: 1rem;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    > *:not(:last-child) {
+      padding-bottom: 4rem;
+    }
+  }
+  
+  .login-btn-container {
+    > button {
+      max-width: 18rem;
+      width: 90%;
+      height: 4.5rem;
+      font-size: 1.1rem;
+      font-weight: bold;
+      --spinner-color: #fff;
+    }
+  
+    display: flex;
+    flex-direction: column;
+    height: 11rem;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .login-spotify-btn {
+    background-color: #1DB954 !important  ;
+  }
 }
 
 .mdl-spinner__layer {
   border-color: var(--spinner-color, $spinner-default) !important;
-}
-
-.playlist-container {
-  display: flex;
-  flex-wrap: wrap;
-  > * {
-    margin: 15px;
-  }
-  justify-content: center;
 }
 
 .user-info {
@@ -85,39 +116,35 @@ main.container {
   }
 }
 
-@include keyframes(fadein) {
-  from {
-    opacity: 0;
+.playlist-picker-grid {
+  display: flex;
+  flex-wrap: wrap;
+  > * {
+    margin: 15px;
   }
-  to {
-    opacity: 1;
-  }
-}
-@include keyframes(fadeout) {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
+  justify-content: center;
 
+  .playlist-card {
+    @include animate("fadein 1s cubic-bezier(0.4, 0, 0.2, 1)");
+
+    width: 16rem;
+    height: 16rem;
+
+    &:hover {
+      cursor: pointer;
+  
+      > .mdl-card__actions {
+        background: rgba(240,98,146, .8)
+      }
+    }
+  }
+}
 
 .playlist-card {
-  @include animate("fadein 1s cubic-bezier(0.4, 0, 0.2, 1)");
   
   &.fade-out {
     @include animate("fadeout .5s cubic-bezier(0.4, 0, 0.2, 1)");
     animation-fill-mode: forwards;
-  }
-
-  
-  &:hover {
-    cursor: pointer;
-
-    > .mdl-card__actions {
-      background: rgba(240,98,146, .8)
-    }
   }
 
   &.selected {
@@ -127,8 +154,6 @@ main.container {
   }
 
   &.mdl-card {
-    width: 16rem;
-    height: 16rem;
     background: var(--playlist-img, "") center no-repeat #fff;
     background-size: cover;
   }
@@ -148,13 +173,13 @@ main.container {
   }
 }
 
+
 .nav-item {
   padding: 1rem 2.5rem;
   display: block;
   font-size: 1rem;
   line-height: 2rem;
   color: $palette-grey-900;
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 
   &.active {
     background-color: $palette-pink-300; 

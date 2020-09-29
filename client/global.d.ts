@@ -11,6 +11,8 @@ declare module 'spotify-web-api-js' {
     ): Promise<SpotifyApi.ListOfUsersPlaylistsResponse>;
   }
 }
+
+
 declare global {
   var axios: AxiosStatic;
   var SpotifyWebApi: SpotifyWebApi.SpotifyWebApiJsStatic;
@@ -18,9 +20,14 @@ declare global {
   interface State {
     profileImg: string;
     displayName: string;
-    statePlaylist: {id: string, name: string, image: string | undefined}
+    statePlaylist: {id: string, name: string, image: string | undefined};
+    artistThreshold: number;
+    songThreshold: number;
+    lastFmUserName: string;
+    spotifyId: string;
   }
   interface Window {
     __state: State;
+    __baseApi: string;
   }
 }
