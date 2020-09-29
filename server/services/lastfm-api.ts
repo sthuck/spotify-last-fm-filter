@@ -1,11 +1,12 @@
 const key = '120221d36602499e90f2f57785d89310';
-const baseApi = 'http://ws.audioscrobbler.com/2.0/'
+const baseApi = 'http://ws.audioscrobbler.com/2.0/';
 const secret = process.env.LASTFMKEY;
 
 import axios from 'axios';
 import CryptoJS from 'crypto-js';
+import {axiosHandler} from '../utils';
 
-interface SessionResponse {session: {subscriber: number, name: string, key: string}}
+interface SessionResponse {session: {subscriber: number, name: string, key: string;};}
 
 export class LastFmApi {
   private sk: string | undefined;
@@ -15,6 +16,7 @@ export class LastFmApi {
     const params = {method, api_key: key, token};
     const api_sig = this.signMethod(params);
     const response = await axios.get<SessionResponse>(baseApi, {params: {...params, api_sig, format: 'json'}, })
+      .catch(axiosHandler);
     return response.data;
   }
 
@@ -23,6 +25,7 @@ export class LastFmApi {
     const params = {method, api_key: key, sk, track, artist, username, autocorrect: 1};
     const api_sig = this.signMethod(params);
     const response = await axios.get(baseApi, {params: {...params, api_sig, format: 'json'}, })
+      .catch(axiosHandler);
     return response.data;
   }
 
@@ -31,6 +34,7 @@ export class LastFmApi {
     const params = {method, api_key: key, sk, artist, username, autocorrect: 1};
     const api_sig = this.signMethod(params);
     const response = await axios.get(baseApi, {params: {...params, api_sig, format: 'json'}, })
+      .catch(axiosHandler);
     return response.data;
   }
 

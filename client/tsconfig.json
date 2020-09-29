@@ -6,7 +6,6 @@
         "outDir": "../dist/client",
         "esModuleInterop": true,
         "incremental": true,
-        "inlineSourceMap": true,
         "allowUmdGlobalAccess": true
     },
     "include": [

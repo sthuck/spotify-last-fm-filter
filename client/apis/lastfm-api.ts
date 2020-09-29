@@ -1,5 +1,5 @@
 const key = '120221d36602499e90f2f57785d89310';
-const redirect = 'http://localhost:8080/redirect';
+const redirect = location.origin + '/redirect';
 import {getBaseApi} from '../utils';
 export type NotError<T> = T extends (LastFmApi.Error | infer R) ? R : never;
 
@@ -40,11 +40,11 @@ export class LastFmApi {
 
 
 export module LastFmApi {
-  export interface SessionResponse {session: {subscriber: number, name: string, key: string}}
-  export type Error = {error: number, message: string};
+  export interface SessionResponse {session: {subscriber: number, name: string, key: string;};}
+  export type Error = {error: number, message: string;};
   export const isError = (obj: OrError<any>): obj is Error => {
     return (obj as Error).error !== undefined;
-  }
+  };
   export type OrError<T> = Error | T;
 
   export namespace TrackInfo {
@@ -110,7 +110,7 @@ export module LastFmApi {
 
     export type Response = OrError<{
       track: Track;
-    }>
+    }>;
   }
   export namespace ArtistInfo {
     export interface Stats {
@@ -175,6 +175,6 @@ export module LastFmApi {
 
     export type Response = OrError<{
       artist: ArtistInfo;
-    }>
+    }>;
   }
 }
