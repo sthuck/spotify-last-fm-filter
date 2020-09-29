@@ -10,6 +10,12 @@
         "allowUmdGlobalAccess": false,
         "lib": [
             "ES2020"
+        ],
+        "types": [
+            "express",
+            "node",
+            "crypto-js",
+            "axios"
         ]
     },
     "include": [
@@ -17,5 +23,5 @@
     ],
     "exclude": [
         "node_modules"
-    ]
+    ],
 }

@@ -5,15 +5,17 @@
   "main": "index.js",
   "scripts": {
     "build:client": "tsc -p client",
+    "build:server": "tsc -p server",
     "build:client:w": "tsc -w -p client",
     "build:css": "node-sass --recursive --output ./dist/client --source-map true --source-map-contents ./client/scss",
     "build:css:w": "node-sass -w --recursive --output ./dist/client --source-map true --source-map-contents ./client/scss",
     "build:copy": "mkdir -p ./dist/client && cp -R ./statics/assets ./dist/client",
     "build:deps": "mkdir -p ./dist/client/deps && cp node_modules/spotify-web-api-js/src/spotify-web-api.js ./dist/client/deps",
-    "build": "npm run build:client && npm run build:css && npm run build:copy",
+    "build": "npm run build:client && npm run build:server && npm run build:css && npm run build:copy",
     "start:server:dev": "nodemon",
     "start": "(npm run build:copy && npm run build:client:w & npm run build:css:w & npm run start:server:dev)",
-    "build:all": "npm run build && npm run build:deps"
+    "build:all": "npm run build && npm run build:deps",
+    "start:prod": "NODE_ENV=production node dist/server/main.js"
   },
   "keywords": [],
   "author": "",
