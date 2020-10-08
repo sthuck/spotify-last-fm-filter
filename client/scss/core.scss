@@ -1,3 +1,7 @@
+$desktop-breakpoint: 840px !default;
+$tablet-breakpoint: 480px !default;
+
+
 @mixin keyframes($animation-name) {
   @-webkit-keyframes #{$animation-name} {
       @content;

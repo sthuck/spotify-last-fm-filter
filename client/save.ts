@@ -14,17 +14,27 @@ const validSongHtml = `<a class="mdl-list__item-secondary-action"><i class="mate
 const filterSongHtml = `<a class="mdl-list__item-secondary-action"><i class="material-icons">remove_circle_outline</i></a>`
 
 const renderTrack = (index: number, id: string, songName: string, artist: string, albumImage: string) => {
+  // return /* html */`
+  // <li class="mdl-list__item mdl-list__item--three-line playlist-track" data-song-id="${id}">
+  //   <span class="mdl-list__item-primary-content">
+  //       <div class="mdl-list__item-avatar">
+  //         ${albumImage ? `<img class="album-image" src="${albumImage}">` : ''} 
+  //       </div>
+  //       <span>${artist} - ${songName}</span>
+  //     <span class="mdl-list__item-text-body listen-count">...</span>
+  //   </span>
+  //   <span class="mdl-list__item-secondary-content filter-btn" data-song-id="${id}">
+  //   </span>
+  // </li>
+  // `
   return /* html */`
-  <li class="mdl-list__item mdl-list__item--two-line" data-song-id="${id}">
-    <span class="mdl-list__item-primary-content">
-        <div class="mdl-list__item-avatar">
-          ${albumImage ? `<img class="album-image" src="${albumImage}">` : ''} 
-        </div>
-        <span>${artist} - ${songName}</span>
-      <span class="mdl-list__item-sub-title listen-count">...</span>
-    </span>
-    <span class="mdl-list__item-secondary-content filter-btn" data-song-id="${id}">
-    </span>
+  <li class="playlist-track row" data-song-id="${id}">
+    <img class="playlist-track--album-image" src="${albumImage || ''}">
+    <div class="column grow"> 
+      <div class="playlist-track--name">${artist} - ${songName}</div>
+      <div datahook-id="listen-count" class="playlist-track--listen-count">...</div>
+    </div>
+    <div datahook-id="filter-btn" class="filter-btn" data-song-id="${id}"></div>
   </li>
   `
 }
@@ -58,10 +68,10 @@ const processTrackListenCount = async (item: SpotifyApi.PlaylistTrackObject, sk:
 
   const id = item.track.id;
   const domItem = document.querySelector(`[data-song-id="${id}"]`);
-  const domListenCount = domItem.querySelector('.listen-count');
+  const domListenCount = domItem.querySelector('[datahook-id="listen-count"]');
   domListenCount.innerHTML = parseSongArtistInfo(songInfo, artistInfo);
 
-  const filterBtnDom = domItem.querySelector('.filter-btn');
+  const filterBtnDom = domItem.querySelector('[datahook-id="filter-btn"]');
   const keepSong = shouldKeepSong(artistInfo, songInfo);
   pageState.set(item.track.id, keepSong);
   validTracksCount = validTracksCount + (keepSong ? 1 : 0);
@@ -69,7 +79,7 @@ const processTrackListenCount = async (item: SpotifyApi.PlaylistTrackObject, sk:
 }
 
 const setupFilterButton = () => {
-  const getFilterBtn = getParentItem('.filter-btn', '.song-list-card');
+  const getFilterBtn = getParentItem('[datahook-id="filter-btn"]', '.song-list-card');
   const songListEl: HTMLDivElement = document.querySelector('.song-list-card');
   songListEl.addEventListener('click', e => {
     const filterBtnEl = getFilterBtn(e.target as HTMLElement);

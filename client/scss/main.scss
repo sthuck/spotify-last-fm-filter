@@ -8,7 +8,7 @@ $spinner-default: $palette-indigo-500;
 
 body {
   height: 100%;
-  font: 100% $font-stack;
+  font: 100% $font-stack !important;
   color: $primary-color;
 }
 
@@ -16,8 +16,9 @@ body {
   position: fixed;
   right: 0;
   bottom: 0;
-  min-width: 100%;
-  min-height: 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .login-header {
@@ -106,13 +107,21 @@ main.login-page-main {
 .user-info {
   display: flex;
   align-items: center;
+
   :first-child {
     margin-right: 1rem;
   }
+
   img {
     width: 3rem;
     height: 3rem;
     border-radius: 50%;
+  }
+
+  @media screen and (max-width: $tablet-breakpoint) {
+    .profile-name {
+      display: none;
+    } 
   }
 }
 
