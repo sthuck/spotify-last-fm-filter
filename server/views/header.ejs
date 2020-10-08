@@ -3,6 +3,10 @@
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TWPP8HF"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer
   mdl-layout--fixed-header">
     <header class="mdl-layout__header">
@@ -10,8 +14,10 @@
         <div class="user-info">
           <img
             className="profile-image"
+            alt="user profile image"
             src="<%=state.profileImg%>"
-          >
+            height="320"
+            width="320">
           <h4 class="profile-name"><%= state.displayName %></h4>
         </div>
         <div class="mdl-layout-spacer"></div>
@@ -19,19 +25,11 @@
 
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
         mdl-textfield--floating-label mdl-textfield--align-right">
-          <label
-            class="mdl-button mdl-js-button mdl-button--icon"
-            for="playlist-search-input"
-          >
+          <label class="mdl-button mdl-js-button mdl-button--icon" for="playlist-search-input">
             <i class="material-icons">search</i>
           </label>
           <div class="mdl-textfield__expandable-holder">
-            <input
-              class="mdl-textfield__input"
-              type="text"
-              name="sample"
-              id="playlist-search-input"
-            >
+            <input class="mdl-textfield__input" type="text" name="sample" id="playlist-search-input">
           </div>
         </div>
         <% } %>

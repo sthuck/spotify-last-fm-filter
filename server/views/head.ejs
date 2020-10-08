@@ -1,62 +1,38 @@
 <meta charset='utf-8'>
-<meta
-  http-equiv='X-UA-Compatible'
-  content='IE=edge'
->
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
 <title>Spotify playlist filter</title>
-<meta
-  name="description"
-  content="Ever got tired of spotify suggesting you to hear songs you already know? use last.fm to filter songs you already heard"
->
-<meta
-  property="og:description"
-  content="Ever got tired of spotify suggesting you to hear songs you already know? use last.fm to filter songs you already heard"
->
-<meta
-  property="og:title"
-  content="Spotify playlist filter"
->
-<meta
-  name='viewport'
-  content='width=device-width, initial-scale=1'
->
-<link
-  href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Roboto:ital,wght@0,400;0,500;0,700;1,300&display=swap"
-  rel="stylesheet"
->
+<meta name="description"
+  content="Ever got tired of spotify suggesting you to hear songs you already know? use last.fm to filter songs you already heard">
+<meta property="og:description"
+  content="Ever got tired of spotify suggesting you to hear songs you already know? use last.fm to filter songs you already heard">
+<meta property="og:title" content="Spotify playlist filter">
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+
+<!-- Google Tag Manager -->
+<script>(function (w, d, s, l, i) {
+    w[l] = w[l] || []; w[l].push({
+      'gtm.start':
+        new Date().getTime(), event: 'gtm.js'
+    }); var f = d.getElementsByTagName(s)[0],
+      j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+        'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+  })(window, document, 'script', 'dataLayer', 'GTM-TWPP8HF');</script>
+<!-- End Google Tag Manager -->
 
 <link
-  rel='stylesheet'
-  type='text/css'
-  media='screen'
-  href='<%-cdn%>main.css'
->
+  href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Roboto:ital,wght@0,400;0,500;0,700;1,300&display=swap"
+  rel="stylesheet preconnect">
+
+<link rel='stylesheet' type='text/css' media='screen' href='<%-cdn%>main.css'>
 <% if (css) { %>
-<link
-  rel='stylesheet'
-  type='text/css'
-  media='screen'
-  href='<%-cdn%><%-css%>.css'
->
+<link rel='stylesheet' type='text/css' media='screen' href='<%-cdn%><%-css%>.css'>
 <% } %>
-<link
-  rel="stylesheet"
-  href="https://fonts.googleapis.com/icon?family=Material+Icons"
->
-<link
-  rel="stylesheet"
-  href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css"
->
-<script
-  defer
-  src="https://code.getmdl.io/1.3.0/material.min.js"
-></script>
-<script
-  src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js"
-  integrity="sha256-bd8XIKzrtyJ1O5Sh3Xp3GiuMIzWC42ZekvrMMD4GxRg="
-  crossorigin="anonymous"
-></script>
-<script src="deps/spotify-web-api.js"></script>
+<link rel="stylesheet preconnect" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet preconnect" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+<script async src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js"
+  integrity="sha256-bd8XIKzrtyJ1O5Sh3Xp3GiuMIzWC42ZekvrMMD4GxRg=" crossorigin="anonymous"></script>
+<script defer src="deps/spotify-web-api.js"></script>
 <!-- <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script> -->
 <%- include('livereload', {dev: dev}); %>
@@ -67,7 +43,4 @@
   window.__baseStatics = '${cdn}>';
 </script>`
 %>
-<script
-  src='<%-cdn%><%-jsScript%>.js'
-  type="module"
-></script>
+<script src='<%-cdn%><%-jsScript%>.js' type="module"></script>

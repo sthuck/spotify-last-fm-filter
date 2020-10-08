@@ -19,3 +19,7 @@ What I hope to do:
 - vue.js
 - nest.js
 - some jvm framework for server, spring or play
+
+
+### 
+cover video from https://coverr.co/videos/putting-on-headphones-&-turning-on-volume-B6uZXEOo4Y

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <%- include('header', {css: 'save'}); %>
 <div class="save-form-container">
@@ -7,8 +7,7 @@
     <div class="row">
       <div
         class="playlist-card mdl-card selected dont-shrink mdl"
-        style="--playlist-img: url(<%- state.statePlaylist.image || `${cdn}assets/empty-playlist.jpg` %>)"
-      >
+        style="--playlist-img: url(<%- state.statePlaylist.image || `${cdn}assets/empty-playlist.jpg` %>)">
         <div class="mdl-card__title mdl-card--expand">
         </div>
       </div>
@@ -28,8 +27,7 @@
     <div class="mdl-cell mdl-cell--hide-phone mdl-cell--1-col-tablet mdl-cell--2-col  filler"></div>
 
     <div
-      class="mdl-card mdl-cell mdl-cell--4-col-phone mdl-cell--6-col-tablet mdl-cell--8-col mdl-shadow--2dp grow song-list-card"
-    >
+      class="mdl-card mdl-cell mdl-cell--4-col-phone mdl-cell--6-col-tablet mdl-cell--8-col mdl-shadow--2dp grow song-list-card">
       <ul class="song-list mdl-list">
 
       </ul>

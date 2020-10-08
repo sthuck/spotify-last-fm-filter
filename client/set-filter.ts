@@ -2,6 +2,10 @@ import {writeState} from './utils';
 
 window.addEventListener('load', () => {
   setupFilterButton();
+  setTimeout(() => {
+    const formEl = document.querySelector('.filter-form');
+    formEl.classList.add('slide');
+  }, 100)
 });
 
 const setupFilterButton = () => {

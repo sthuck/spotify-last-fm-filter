@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <%- include('head', {dev: dev, jsScript: 'login', css: ''}); %>
@@ -14,20 +14,17 @@
       <div><a
           class="row"
           href="https://github.com/sthuck/spotify-last-fm-filter"
-          target="_blank"
-        ><img src="<%-cdn%>assets/github.png"></a></div>
+          target="_blank"><img alt="github" src="<%-cdn%>assets/github.png"></a></div>
     </div>
   </header>
   <video
     autoplay
     muted
     loop
-    id="cover-video"
-  >
+    id="cover-video">
     <source
       src="<%-cdn%>assets/cover.mp4"
-      type="video/mp4"
-    >
+      type="video/mp4">
   </video>
   <main class="login-page-main">
     <div class="mdl-grid">
@@ -43,14 +40,12 @@
 
         <div class="login-btn-container">
           <button
-            class="login-spotify-btn	mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-          >
+            class="login-spotify-btn	mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
             Login to spotify
           </button>
 
           <button
-            class="login-lastfm-btn .mdl-color--red-A700 mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-          >
+            class="login-lastfm-btn .mdl-color--red-A700 mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
             Login to LAST.FM
           </button>
         </div>

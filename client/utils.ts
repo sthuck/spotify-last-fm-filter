@@ -22,7 +22,7 @@ export function escapeRegExp(string) {
 }
 
 const encodeJsonBase64 = (obj: any) => {
-  return btoa(JSON.stringify(obj));
+  return btoa(encodeURIComponent(JSON.stringify(obj)));
 }
 
 // export const decodeJsonBase64 = (s: string) => {

@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <%- include('header', {css: 'set-filter'}); %>
 <div class="filter-container row">
   <form class="row filter-form">
     <div
       class="playlist-card mdl-card selected dont-shrink mdl"
-      style="--playlist-img: url(<%- state.statePlaylist.image || `${cdn}assets/empty-playlist.jpg` %>)"
-    >
+      style="--playlist-img: url(<%- state.statePlaylist.image || `${cdn}assets/empty-playlist.jpg` %>)">
       <div class="mdl-card__title mdl-card--expand">
       </div>
 
@@ -32,39 +31,33 @@
 
           <div
             id="name"
-            class="grow"
-          >
+            class="grow">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fill-parent">
               <input
                 class="mdl-textfield__input"
                 type="number"
                 min=1
-                id="song-input"
-              >
+                id="song-input">
               <label
                 class="mdl-textfield__label"
-                for="song-input"
-              >Threshold to filter songs by</label>
+                for="song-input">Threshold to filter songs by</label>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fill-parent">
               <input
                 class="mdl-textfield__input"
                 type="number"
                 min=1
-                id="artist-input"
-              >
+                id="artist-input">
               <label
                 class="mdl-textfield__label"
-                for="artist-input"
-              >Threshold to filter artists by</label>
+                for="artist-input">Threshold to filter artists by</label>
             </div>
           </div>
           <div class="row filter-form-actions">
             <button
               type="button"
               id="filter-btn"
-              class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-            >
+              class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
               Filter
             </button>
           </div>

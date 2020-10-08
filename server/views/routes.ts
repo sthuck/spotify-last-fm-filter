@@ -12,7 +12,7 @@ const getStateObj = (req: Request) => {
   let stateObj = {};
   try {
     const state = req.cookies.state;
-    stateObj = JSON.parse(Buffer.from(state, 'base64').toString());
+    stateObj = JSON.parse(decodeURIComponent(Buffer.from(state, 'base64').toString()));
   } catch (e) {}
   return stateObj;
 }

@@ -82,16 +82,22 @@
     
     .filter-form {
       @include filter-form();
-      @include animate("slide .4s ease-in");
+      // @include animate("slide .4s ease-in");
+      will-change: width;
+      transition: width .4s ease-in;
       animation-fill-mode: forwards;
       position: relative;
       overflow: hidden;
-      width: var(--total-form-size);
+      width: var(--playlist-card-size);
       height: calc(var(--playlist-card-size) + 1rem);
       top: 10%;
       left: calc(50% - (var(--total-form-size) / 2));
 
+      &.slide {
+        width: var(--total-form-size);
+      }
     }
+
     .set-filter-card {
       width: var(--set-filter-size);
     }

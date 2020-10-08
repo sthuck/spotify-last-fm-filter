@@ -14,19 +14,6 @@ const validSongHtml = `<a class="mdl-list__item-secondary-action"><i class="mate
 const filterSongHtml = `<a class="mdl-list__item-secondary-action"><i class="material-icons">remove_circle_outline</i></a>`
 
 const renderTrack = (index: number, id: string, songName: string, artist: string, albumImage: string) => {
-  // return /* html */`
-  // <li class="mdl-list__item mdl-list__item--three-line playlist-track" data-song-id="${id}">
-  //   <span class="mdl-list__item-primary-content">
-  //       <div class="mdl-list__item-avatar">
-  //         ${albumImage ? `<img class="album-image" src="${albumImage}">` : ''} 
-  //       </div>
-  //       <span>${artist} - ${songName}</span>
-  //     <span class="mdl-list__item-text-body listen-count">...</span>
-  //   </span>
-  //   <span class="mdl-list__item-secondary-content filter-btn" data-song-id="${id}">
-  //   </span>
-  // </li>
-  // `
   return /* html */`
   <li class="playlist-track row" data-song-id="${id}">
     <img class="playlist-track--album-image" src="${albumImage || ''}">
@@ -136,7 +123,7 @@ const fillStats = () => {
   const totalTracks = pageState.size;
   const valid = validTracksCount;
   statsEl.innerHTML = /*html*/`
-  <div class="stats-name">${playlistName}</div>
+  <div class="stats-name"><div>${playlistName}</div></div>
   <div class="stats-count">${valid}/${totalTracks}</div>`
 }
 
