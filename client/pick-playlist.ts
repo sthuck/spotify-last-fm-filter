@@ -69,6 +69,14 @@ const handlePlaylistClick = () => {
     }
   }));
 }
+function discoverWeeklyFirst(playlists: SpotifyApi.PlaylistObjectSimplified[]) {
+  const index = playlists.findIndex(p => p.name === 'Discover Weekly');
+  if (index !== -1) {
+    const [item] = playlists.splice(index, 1);
+    return [item, ...playlists];
+  }
+  return playlists;
+}
 
 window.addEventListener('load', async () => {
   allPlaylists = playlists = await fetchUserPlaylists().catch((e: XMLHttpRequest) => {
@@ -77,7 +85,8 @@ window.addEventListener('load', async () => {
       location.assign('/')
     }
     throw e;
-  });
+  }).then(discoverWeeklyFirst);
+
   setupSearch();
   renderPlaylists();
   handlePlaylistClick();
