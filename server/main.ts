@@ -12,17 +12,6 @@ const DEVMODE = isDevMode();
 
 app.use(AWSXRay.express.openSegment('PlaylistFilter'));
 
-if (!DEVMODE) {
-  app.use((req, res, next) => {
-    console.log(req.headers.host);
-    console.log(req.hostname);
-    req.get('host');
-
-    res.setHeader('Access-Control-Allow-Origin', `${req.protocol}://${req.get('host')}`);
-    next();
-  });
-}
-
 app.set('view engine', 'ejs');
 app.set('views', path.join('server', 'views'));
 
