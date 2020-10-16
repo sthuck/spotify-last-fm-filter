@@ -21,5 +21,16 @@ What I hope to do:
 - some jvm framework for server, spring or play
 
 
-### 
+### credits
 cover video from https://coverr.co/videos/putting-on-headphones-&-turning-on-volume-B6uZXEOo4Y
+
+### screenshots
+
+![login](./screenshots/1.png)
+![pick playlist](./screenshots/2.png)
+![set filte](./screenshots/3.png)
+![save](./screenshots/4.png
+![login](./screenshots/5.png)
+![pick playlist](./screenshots/6.png)
+![set filte](./screenshots/7.png)
+![save](./screenshots/8.png)
