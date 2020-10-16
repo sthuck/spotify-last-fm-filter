@@ -1,4 +1,4 @@
-import express from 'express';
+import express, {Router} from 'express';
 import path from 'path';
 import {api} from './api';
 import {isDevMode} from './utils';
@@ -9,13 +9,22 @@ import cors from 'cors';
 const app = express();
 const PORT = process.env.PORT;
 const DEVMODE = isDevMode();
+app.set('trust proxy', true);
+app.set('view engine', 'ejs');
+
+
+const healthTest = Router().get('/test', (req, res) => {
+  res.sendStatus(200);
+  res.end();
+});
+
+app.use('/health', healthTest);
 
 app.use(AWSXRay.express.openSegment('PlaylistFilter'));
 
-app.set('view engine', 'ejs');
 app.set('views', path.join('server', 'views'));
 
-app.use('/api', api)
+app.use('/api', api);
 app.use(viewsRouter);
 
 app.use(cors(), express.static(path.resolve('dist', 'client'), {extensions: ['html', 'js']}));
@@ -23,7 +32,7 @@ app.use(cors(), express.static(path.resolve('dist', 'client'), {extensions: ['ht
 app.use(AWSXRay.express.closeSegment());
 
 app.listen(PORT || 8080);
-console.log('listening on http://localhost:8080')
+console.log('listening on http://localhost:8080');
 
 if (DEVMODE) {
   console.log('in dev mode, starting livereload');
