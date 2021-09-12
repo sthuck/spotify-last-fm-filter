@@ -16,11 +16,6 @@ jobs:
           node-version: 14
       - uses: MeilCli/bump-release-action@v1
         with:
-          bump:
-            default: 'patch'
-          files:
-            - file-path: 'package.json'
-              line: 3
-            - file-path: 'package-lock.json'
-              line: 3
+          config_path: '.github/bump-config.yml'
+          bump: 'patch'
 
