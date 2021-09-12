@@ -17,7 +17,7 @@ jobs:
       - uses: MeilCli/bump-release-action@v1
         with:
           bump:
-            default: patch
+            default: 'patch'
           files:
             - file-path: 'package.json'
               line: 3
