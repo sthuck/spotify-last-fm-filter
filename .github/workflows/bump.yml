@@ -1,8 +1,9 @@
 # .github/workflows/release.yml:
 name: Bump version
 
-on: status
-
+on:
+  pull_request:
+    types: [assigned, opened, synchronize, reopened]
 jobs:
   bump:
     runs-on: ubuntu-latest
