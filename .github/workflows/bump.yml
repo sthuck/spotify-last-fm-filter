@@ -1,0 +1,25 @@
+# .github/workflows/release.yml:
+name: Bump version
+
+on: status
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - uses: MeilCli/bump-release-action@v1
+        with:
+          bump:
+            default: patch
+          files:
+            - file-path: 'package.json'
+              line: 3
+            - file-path: 'package-lock.json'
+              line: 3
+
