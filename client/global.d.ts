@@ -30,4 +30,10 @@ declare global {
     __state: State;
     __baseApi: string;
   }
+
+  interface HTMLDialogElement {
+    showModal(): void;
+    close(): void;
+    
+  }
 }

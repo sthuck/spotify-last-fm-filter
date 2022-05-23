@@ -3,8 +3,8 @@ import {RequestHandler} from 'express';
 
 var env = process.env.NODE_ENV || 'development';
 const DEVMODE = env === 'development';
-
-export const asyncHandler = (fn: RequestHandler): RequestHandler => (req, res, next) => {
+type AsyncRequestHandler = (...args: Parameters<RequestHandler>) => Promise<void>;
+export const asyncHandler = (fn: AsyncRequestHandler): RequestHandler => (req, res, next) => {
   fn(req, res, next).catch(e => {
     console.error(e);
     if (DEVMODE) {
